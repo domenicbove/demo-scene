@@ -79,6 +79,66 @@ services:
       https_proxy:
       no_proxy:
 
+  zookeeper1:
+    image: geerlingguy/docker-centos7-ansible
+    privileged: true
+    hostname: zookeeper1.confluent
+    container_name: zookeeper1
+    ports:
+      - "2181:2181"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+  kafka-broker1:
+    image: geerlingguy/docker-centos7-ansible
+    hostname: kafka-broker1.confluent
+    container_name: kafka-broker1
+    privileged: true
+    ports:
+      - "9092:9092"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+  kafka-broker2:
+    image: geerlingguy/docker-centos7-ansible
+    hostname: kafka-broker2.confluent
+    container_name: kafka-broker2
+    privileged: true
+    ports:
+      - "9192:9092"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+  kafka-broker3:
+    image: geerlingguy/docker-centos7-ansible
+    hostname: kafka-broker3.confluent
+    container_name: kafka-broker3
+    privileged: true
+    ports:
+      - "9292:9092"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+  schema-registry1:
+    image: geerlingguy/docker-centos7-ansible
+    build: .
+    hostname: schema-registry1.confluent
+    container_name: schema-registry1
+    privileged: true
+    ports:
+      - "8081:8081"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+  control-center1:
+    image: geerlingguy/docker-centos7-ansible
+    hostname: control-center1.confluent
+    container_name: control-center1
+    privileged: true
+    ports:
+      - "9021:9021"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 
 volumes:
   supervisor-socket:
